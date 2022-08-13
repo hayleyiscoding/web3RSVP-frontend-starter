@@ -7,6 +7,13 @@ import connectContract from "../utils/connectContract";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import Alert from "../components/Alert";
+import { Web3Storage } from "web3.storage";
+
+function makeStorageClient() {
+  return new Web3Storage({
+    token: process.env.NEXT_PUBLIC_WEB3STORAGE_TOKEN,
+  });
+}
 
 export default function CreateEvent() {
   const { data: account } = useAccount();
@@ -22,34 +29,33 @@ export default function CreateEvent() {
   const [refund, setRefund] = useState("");
   const [eventLink, setEventLink] = useState("");
   const [eventDescription, setEventDescription] = useState("");
+  const [image, setImage] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     const body = {
       name: eventName,
       description: eventDescription,
       link: eventLink,
-      image: getRandomImage(),
+      image: "/" + image.name,
     };
 
     try {
-      const response = await fetch("/api/store-event-data", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      if (response.status !== 200) {
-        alert("Oops! Something went wrong. Please refresh and try again.");
-      } else {
-        console.log("Form successfully submitted!");
-        let responseJSON = await response.json();
-        await createEvent(responseJSON.cid);
-      }
-      // check response, if success is false, dont take them to success page
+      const buffer = Buffer.from(JSON.stringify(body));
+      const files = [new File([buffer], "data.json"), image];
+      const client = makeStorageClient();
+      const cid = await client.put(files);
+      await createEvent(cid);
     } catch (error) {
       alert(
         `Oops! Something went wrong. Please refresh and try again. Error ${error}`
       );
+    } finally {
+      setEventName("");
+      setEventDescription("");
+      setEventLink("");
+      setImage(null);
     }
 
     async function createEvent(cid) {
@@ -295,6 +301,28 @@ export default function CreateEvent() {
                     className="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"
                     value={eventDescription}
                     onChange={(e) => setEventDescription(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
+                <label
+                  htmlFor="event-link"
+                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                >
+                  Event Image
+                  <p className="mt-1 max-w-2xl text-sm text-gray-400">
+                    Upload an image for your event
+                  </p>
+                </label>
+                <div className="mt-1 sm:mt-0 sm:col-span-2">
+                  <input
+                    id="event-image"
+                    name="event-image"
+                    type="file"
+                    className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"
+                    required
+                    onChange={(event) => setImage(event.target.files[0])}
                   />
                 </div>
               </div>

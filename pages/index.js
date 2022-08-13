@@ -21,7 +21,7 @@ export default function Home() {
   const { loading, error, data } = useQuery(UPCOMING_EVENTS, {
     variables: { currentTimestamp },
   });
-
+  console.log({ data });
   if (loading)
     return (
       <Landing>
