@@ -110,7 +110,7 @@ export default function CreateEvent() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <Head>
-        <title>Create your event | web3rsvp</title>
+        <title>Add your event | EventSky</title>
         <meta
           name="description"
           content="Create your virtual event on the blockchain"
@@ -143,9 +143,36 @@ export default function CreateEvent() {
         )}
 
         {!success && (
-          <h1 className="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl md:text-5xl mb-4">
-            Create your virtual event
-          </h1>
+          <div>
+            <h1 className="text-3xl tracking-tight font-extralight text-gray-900 sm:text-4xl md:text-5xl mb-4">
+              Add Your Virtual Event
+            </h1>
+            <p className="font-light text-base pr-40 pb-8 pt-8">
+              Below you will find a form to add your event. Please make sure
+              that your event is being hosted online, that it is applicable to
+              an international audience and that it is suitable for all age
+              groups.
+              <br /> <br />
+              Also, please do not include any sensitive information in your
+              event details - such as passwords, phone numbers. Please also be
+              sure that you own the copyright to your event image.
+              <br />
+              <br />
+              You may add any events that you are hosting - such as yoga
+              classes, branding workshops, networking events, online retreats,
+              masterminds, craft workshops, meditation classes and more.
+              <br /> <br />
+              It is free to add your event. You just need to connect your
+              wallet. If you do not have a wallet, visit{" "}
+              <a href="https://metamask.io" className="underline">
+                metamask.io
+              </a>{" "}
+              to create one (also free).
+              <br /> <br />
+              If you have any questions about this form, please contact
+              hayleyiscoding (@) gmail.com.
+            </p>
+          </div>
         )}
 
         {account && !success && (
@@ -330,13 +357,13 @@ export default function CreateEvent() {
             <div className="pt-5">
               <div className="flex justify-end">
                 <Link href="/">
-                  <a className="bg-white py-2 px-4 border border-gray-300 rounded-full shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <a className="bg-white py-2 px-4 border border-gray-300 rounded-full shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
                     Cancel
                   </a>
                 </Link>
                 <button
                   type="submit"
-                  className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="ml-3 inline-flex justify-center py-2 px-4 border-2 border-transparent shadow-sm text-sm font-medium rounded-full text-white bg-black hover:bg-white hover:text-black hover:border-2 border-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                 >
                   Create
                 </button>

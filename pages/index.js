@@ -25,7 +25,20 @@ export default function Home() {
   if (loading)
     return (
       <Landing>
-        <p>Loading...</p>
+        <div className="lds-spinner">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </Landing>
     );
   if (error)

@@ -36,7 +36,7 @@ export default function MyUpcomingEvents() {
   if (loading)
     return (
       <Dashboard page="events" isUpcoming={true}>
-        <p>Loading...</p>
+        <p>Hello</p>
       </Dashboard>
     );
   if (error)

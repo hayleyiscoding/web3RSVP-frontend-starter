@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ["Space Grotesk", ...defaultTheme.fontFamily.serif],
+        serif: ["Nunito Sans", ...defaultTheme.fontFamily.serif],
       },
     },
   },
