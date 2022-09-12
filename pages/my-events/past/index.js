@@ -37,7 +37,20 @@ export default function MyPastEvents() {
   if (loading)
     return (
       <Dashboard page="events" isUpcoming={false}>
-        <p>Loading...</p>
+        <div className="lds-spinner">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </Dashboard>
     );
   if (error)

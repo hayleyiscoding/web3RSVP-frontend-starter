@@ -36,7 +36,20 @@ export default function MyUpcomingEvents() {
   if (loading)
     return (
       <Dashboard page="events" isUpcoming={true}>
-        <p>Hello</p>
+        <div className="lds-spinner">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </Dashboard>
     );
   if (error)
