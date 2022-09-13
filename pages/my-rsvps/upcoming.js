@@ -72,7 +72,7 @@ export default function MyUpcomingRSVPs() {
         </div>
       ) : (
         <div className="flex flex-col items-center py-8">
-          <p className="mb-4">Please connect your wallet to view your rsvps</p>
+          <p className="mb-4">Please connect your wallet to view your RSVPs</p>
           <ConnectButton />
         </div>
       )}

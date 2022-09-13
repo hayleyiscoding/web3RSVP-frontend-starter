@@ -25,6 +25,7 @@ export default function CreateEvent() {
   const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [eventTime, setEventTime] = useState("");
+  const [eventCost, setEventCost] = useState("");
   const [maxCapacity, setMaxCapacity] = useState("");
   const [refund, setRefund] = useState("");
   const [eventLink, setEventLink] = useState("");
@@ -39,6 +40,7 @@ export default function CreateEvent() {
       description: eventDescription,
       link: eventLink,
       image: "/" + image.name,
+      cost: eventCost,
     };
 
     try {
@@ -55,7 +57,7 @@ export default function CreateEvent() {
       setEventName("");
       setEventDescription("");
       setEventLink("");
-      setImage(null);
+      setEventCost("");
     }
 
     async function createEvent(cid) {
@@ -162,8 +164,11 @@ export default function CreateEvent() {
               classes, branding workshops, networking events, online retreats,
               masterminds, craft workshops, meditation classes and more.
               <br /> <br />
-              It is free to add your event. You just need to connect your
-              wallet. If you do not have a wallet, visit{" "}
+              It is free to add your event, but a small gas fee is required for
+              the transaction. You will need to have a small amount of MATIC in
+              your wallet to cover this (usually less than US$0.01)
+              <br /> <br />
+              If you do not have a wallet, visit{" "}
               <a href="https://metamask.io" className="underline">
                 metamask.io
               </a>{" "}
@@ -234,6 +239,29 @@ export default function CreateEvent() {
                       onChange={(e) => setEventTime(e.target.value)}
                     />
                   </div>
+                </div>
+              </div>
+
+              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
+                <label
+                  htmlFor="event-cost"
+                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                >
+                  Event Cost
+                  <p className="mt-1 max-w-2xl text-sm text-gray-400">
+                    Is your event free or paid? If paid, how much is it?
+                  </p>
+                </label>
+                <div className="mt-1 sm:mt-0 sm:col-span-2">
+                  <input
+                    id="event-cost"
+                    name="event-cost"
+                    type="text"
+                    className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"
+                    required
+                    value={eventCost}
+                    onChange={(e) => setEventCost(e.target.value)}
+                  />
                 </div>
               </div>
 

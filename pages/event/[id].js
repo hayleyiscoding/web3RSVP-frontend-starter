@@ -14,6 +14,7 @@ import {
   TicketIcon,
   UsersIcon,
   LinkIcon,
+  CurrencyDollarIcon,
 } from "@heroicons/react/outline";
 
 function Event({ event }) {
@@ -68,7 +69,7 @@ function Event({ event }) {
       <Head>
         <title>{event.name} | web3rsvp</title>
         <meta name="description" content={event.name} />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="./images/favicon.png" />
       </Head>
       <section className="relative py-12">
         {loading && (
@@ -153,6 +154,10 @@ function Event({ event }) {
               <TicketIcon className="w-6 mr-2" />
               <span className="truncate">1 RSVP per wallet</span>
             </div>
+            <div className="flex item-center">
+              <CurrencyDollarIcon className="w-6 mr-2" />
+              <span className="truncate">{event.cost}</span>
+            </div>
             <div className="flex items-center">
               <EmojiHappyIcon className="w-10 mr-2" />
               <span className="truncate">
@@ -164,6 +169,20 @@ function Event({ event }) {
                   rel="noreferrer"
                 >
                   {event.eventOwner}
+                </a>
+              </span>
+            </div>
+
+            <div className="flex items-center">
+              <EmojiHappyIcon className="w-10 mr-2" />
+              <span className="truncate">
+                <a
+                  className="text-indigo-800 truncate hover:underline"
+                  href={event.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {event.link}
                 </a>
               </span>
             </div>
