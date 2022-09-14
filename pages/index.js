@@ -7,7 +7,7 @@ const UPCOMING_EVENTS = gql`
   query Events {
     events(
       orderBy: eventTimestamp
-      orderDirection: desc
+      orderDirection: asc
       where: { isDisabled: false }
     ) {
       id
