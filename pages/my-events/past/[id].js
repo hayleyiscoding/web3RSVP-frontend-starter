@@ -230,6 +230,7 @@ export async function getServerSideProps(context) {
           maxCapacity
           totalRSVPs
           totalConfirmedAttendees
+          isDisabled
           rsvps {
             id
             attendee {

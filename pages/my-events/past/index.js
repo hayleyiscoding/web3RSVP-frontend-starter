@@ -9,7 +9,11 @@ import EventCard from "../../../components/EventCard";
 const MY_PAST_EVENTS = gql`
   query Events($eventOwner: String, $currentTimestamp: String) {
     events(
-      where: { eventOwner: $eventOwner, eventTimestamp_lt: $currentTimestamp }
+      where: {
+        eventOwner: $eventOwner
+        eventTimestamp_lt: $currentTimestamp
+        isDisabled: false
+      }
     ) {
       id
       eventID

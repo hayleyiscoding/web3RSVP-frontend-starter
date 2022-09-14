@@ -7,7 +7,7 @@ import EventCard from "../../components/EventCard";
 
 const MY_PAST_RSVPS = gql`
   query Account($id: String) {
-    account(id: $id) {
+    account(id: $id, where: { isDisabled: false }) {
       id
       rsvps {
         event {
