@@ -173,7 +173,7 @@ function Event({ event }) {
             </div>
             <div className="flex item-center">
               <CurrencyDollarIcon className="w-6 mr-2" />
-              <span className="truncate">{event.cost}</span>
+              <span className="truncate">{event.eventCost}</span>
             </div>
             <div className="flex items-center">
               <EmojiHappyIcon className="w-10 mr-2" />
