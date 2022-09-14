@@ -174,7 +174,7 @@ function Event({ event }) {
             </div>
 
             <div className="flex items-center">
-              <EmojiHappyIcon className="w-10 mr-2" />
+              <LinkIcon className="w-6 mr-2" />
               <span className="truncate">
                 <a
                   className="text-indigo-800 truncate hover:underline"

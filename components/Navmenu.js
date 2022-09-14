@@ -6,7 +6,7 @@ export default function Navmenu({ account, disconnect }) {
   return (
     <Menu as="div" className="relative z-10 inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex items-center px-2.5 py-2 rounded-md text-sm font-medium bg-black text-white w-32 cursor-pointer">
+        <Menu.Button className="inline-flex items-center px-2.5 py-2 rounded-md text-sm font-medium bg-black text-white w-32 cursor-pointer hover:bg-gray-700">
           <span className="w-12 h-3 mr-1 bg-white rounded-full"></span>
           <p className="text-ellipsis overflow-hidden">{account.address}</p>
         </Menu.Button>

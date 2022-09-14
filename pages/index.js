@@ -1,5 +1,5 @@
 import Landing from "../components/Landing";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import EventCard from "../components/EventCard";
 
@@ -30,20 +30,42 @@ const UPCOMING_EVENTS = gql`
 // `;
 
 export default function Home() {
-  const [currentTimestamp, setEventTimestamp] = useState(
+  const [currentTimestamp, setCurrentTimestamp] = useState(
     new Date().getTime().toString()
   );
-  const { loading, error, data } = useQuery(UPCOMING_EVENTS, {
-    variables: { currentTimestamp },
-  });
-  console.log({ data });
 
+  const [filteredEvents, setFilteredEvents] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  const { loading, error, data, refetch } = useQuery(UPCOMING_EVENTS, {
+    variables: { currentTimestamp, searchText },
+  });
+
   function searchInputHandler(e) {
-    const lowerCase = e.target.value.toLowerCase();
-    setSearchText(lowerCase);
+    setSearchText(e.target.value);
   }
+
+  function updateFilteredEvents() {
+    if (data?.events) {
+      if (!searchText) {
+        setFilteredEvents(data.events);
+      } else {
+        setFilteredEvents(
+          data.events.filter((event) =>
+            event.name.toLowerCase().includes(searchText.toLowerCase())
+          )
+        );
+      }
+    }
+  }
+
+  function handleClick() {
+    updateFilteredEvents();
+  }
+
+  useEffect(() => {
+    updateFilteredEvents();
+  }, [searchText, data]);
 
   if (loading)
     return (
@@ -73,7 +95,7 @@ export default function Home() {
 
   return (
     <Landing>
-      <div className="flex justify-start pt-8">
+      <div className="flex justify-start pt-4 pb-6">
         <div className="mb-3 xl:w-96">
           <div className="input-group relative flex items-stretch w-full mb-4">
             <input
@@ -82,12 +104,14 @@ export default function Home() {
               placeholder="Search"
               aria-label="Search"
               aria-describedby="button-addon2"
+              onChange={searchInputHandler}
+              value={searchText}
             />
             <button
               className="btn px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-400 hover:shadow-lg focus:bg-gray-400  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out flex items-center"
               type="button"
               id="button-addon2"
-              onChange={searchInputHandler}
+              onClick={handleClick}
             >
               <svg
                 aria-hidden="true"
@@ -112,18 +136,17 @@ export default function Home() {
         role="list"
         className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"
       >
-        {data &&
-          data.events.map((event) => (
-            <li key={event.id}>
-              <EventCard
-                id={event.id}
-                name={event.name}
-                eventTimestamp={event.eventTimestamp}
-                imageURL={event.imageURL}
-                eventCost={event.cost}
-              />
-            </li>
-          ))}
+        {filteredEvents.map((event) => (
+          <li key={event.id}>
+            <EventCard
+              id={event.id}
+              name={event.name}
+              eventTimestamp={event.eventTimestamp}
+              imageURL={event.imageURL}
+              eventCost={event.cost}
+            />
+          </li>
+        ))}
       </ul>
     </Landing>
   );
