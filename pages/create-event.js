@@ -89,7 +89,9 @@ export default function CreateEvent() {
 
           setSuccess(true);
           setLoading(false);
-          setMessage("Your event has been created successfully.");
+          setMessage(
+            "Your event has been created successfully. Please note that it may take a few minutes to appear on the home page."
+          );
           setTimeout(() => {
             router.push("/");
           }, 5000);
