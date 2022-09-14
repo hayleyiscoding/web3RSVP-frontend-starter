@@ -156,16 +156,11 @@ export default function CreateEvent() {
               Add Your Virtual Event
             </h1>
             <p className="font-light text-base pr-40 pb-8 pt-8">
-              Below you will find a form to add your event. Please make sure
-              that your event is being hosted online, that it is applicable to
-              an international audience and that it is suitable for all age
-              groups.
-              <br /> <br />
-              It is free to add your event, but a small gas fee is required for
-              the transaction. You will need to have a small amount of MATIC in
-              your wallet to cover this (usually less than US$0.01)
-              <br /> <br />
-              If you do not have a wallet, visit{" "}
+              Below you will find a form to add your event. It is free to add
+              your event, but a small gas fee is required for the transaction.
+              You will need to have a small amount of MATIC in your wallet to
+              cover this (usually less than US$0.01). If you do not have a
+              wallet, visit{" "}
               <a href="https://metamask.io" className="underline">
                 metamask.io
               </a>{" "}
@@ -347,7 +342,7 @@ export default function CreateEvent() {
                   <textarea
                     id="about"
                     name="about"
-                    rows={10}
+                    rows={3}
                     className="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"
                     value={eventDescription}
                     onChange={(e) => setEventDescription(e.target.value)}
