@@ -8,6 +8,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import Alert from "../components/Alert";
 import { Web3Storage } from "web3.storage";
+import { useRouter } from "next/router";
 
 function makeStorageClient() {
   return new Web3Storage({
@@ -31,6 +32,8 @@ export default function CreateEvent() {
   const [eventLink, setEventLink] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [image, setImage] = useState(null);
+
+  const router = useRouter;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -65,7 +68,6 @@ export default function CreateEvent() {
 
         if (rsvpContract) {
           let deposit = ethers.utils.parseEther(refund);
-          let parsedEventCost = ethers.utils.parseEther(eventCost);
           let eventDateAndTime = new Date(`${eventDate} ${eventTime}`);
           let eventTimestamp = eventDateAndTime.getTime();
           let eventDataCID = cid;
@@ -74,7 +76,7 @@ export default function CreateEvent() {
             eventTimestamp,
             deposit,
             maxCapacity,
-            parsedEventCost,
+            eventCost,
             eventDataCID,
             { gasLimit: 900000 }
           );
@@ -88,6 +90,9 @@ export default function CreateEvent() {
           setSuccess(true);
           setLoading(false);
           setMessage("Your event has been created successfully.");
+          setTimeout(() => {
+            router.push("/");
+          }, 5000);
         } else {
           console.log("Error getting contract.");
         }
