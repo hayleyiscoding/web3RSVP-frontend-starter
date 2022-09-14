@@ -16,6 +16,7 @@ import {
   LinkIcon,
   CurrencyDollarIcon,
 } from "@heroicons/react/outline";
+import { Router } from "next/router";
 
 function Event({ event }) {
   const { data: account } = useAccount();
@@ -34,6 +35,20 @@ function Event({ event }) {
       }
     }
     return false;
+  }
+
+  async function handleDeleteEvent(eventId) {
+    const rsvpContract = connectContract();
+    console.log({ rsvpContract });
+    if (rsvpContract) {
+      const tx = await rsvpContract.disableEvent(eventId, {
+        gasLimit: 900000,
+      });
+      console.log("Disabling event...", tx.hash);
+      await tx.wait();
+      console.log("Disabling event...", tx.hash);
+      router.push("/");
+    }
   }
 
   const newRSVP = async () => {
@@ -186,6 +201,18 @@ function Event({ event }) {
                 </a>
               </span>
             </div>
+            {event?.eventOwner?.toLowerCase() ===
+              account?.address?.toLowerCase() && (
+              <div>
+                <button
+                  type="button"
+                  className="w-full items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  onClick={() => handleDeleteEvent(event.id)}
+                >
+                  Delete Event
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </section>

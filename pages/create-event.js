@@ -40,7 +40,6 @@ export default function CreateEvent() {
       description: eventDescription,
       link: eventLink,
       image: "/" + image.name,
-      cost: eventCost,
     };
 
     try {
@@ -66,6 +65,7 @@ export default function CreateEvent() {
 
         if (rsvpContract) {
           let deposit = ethers.utils.parseEther(refund);
+          let parsedEventCost = ethers.utils.parseEther(eventCost);
           let eventDateAndTime = new Date(`${eventDate} ${eventTime}`);
           let eventTimestamp = eventDateAndTime.getTime();
           let eventDataCID = cid;
@@ -73,6 +73,7 @@ export default function CreateEvent() {
           const txn = await rsvpContract.createNewEvent(
             eventTimestamp,
             deposit,
+            parsedEventCost,
             maxCapacity,
             eventDataCID,
             { gasLimit: 900000 }
@@ -249,7 +250,7 @@ export default function CreateEvent() {
                 >
                   Event Cost
                   <p className="mt-1 max-w-2xl text-sm text-gray-400">
-                    Is your event free or paid? If paid, how much is it?
+                    Write the cost of your event in US Dollars
                   </p>
                 </label>
                 <div className="mt-1 sm:mt-0 sm:col-span-2">
@@ -261,6 +262,7 @@ export default function CreateEvent() {
                     required
                     value={eventCost}
                     onChange={(e) => setEventCost(e.target.value)}
+                    placeholder="15"
                   />
                 </div>
               </div>
