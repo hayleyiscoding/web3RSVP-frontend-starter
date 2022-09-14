@@ -161,15 +161,6 @@ export default function CreateEvent() {
               an international audience and that it is suitable for all age
               groups.
               <br /> <br />
-              Also, please do not include any sensitive information in your
-              event details - such as passwords, phone numbers. Please also be
-              sure that you own the copyright to your event image.
-              <br />
-              <br />
-              You may add any events that you are hosting - such as yoga
-              classes, branding workshops, networking events, online retreats,
-              masterminds, craft workshops, meditation classes and more.
-              <br /> <br />
               It is free to add your event, but a small gas fee is required for
               the transaction. You will need to have a small amount of MATIC in
               your wallet to cover this (usually less than US$0.01)
@@ -179,9 +170,6 @@ export default function CreateEvent() {
                 metamask.io
               </a>{" "}
               to create one (also free).
-              <br /> <br />
-              If you have any questions about this form, please contact
-              hayleyiscoding (@) gmail.com.
             </p>
           </div>
         )}
