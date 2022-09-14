@@ -33,7 +33,7 @@ export default function CreateEvent() {
   const [eventDescription, setEventDescription] = useState("");
   const [image, setImage] = useState(null);
 
-  const router = useRouter;
+  const router = useRouter();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -406,14 +406,14 @@ export default function CreateEvent() {
             </div>
           </form>
         )}
-        {success && eventID && (
+        {/* {success && eventID && (
           <div>
             Success! Please wait a few minutes, then check out your event page{" "}
             <span className="font-bold">
               <Link href={`/event/${eventID}`}>here</Link>
             </span>
           </div>
-        )}
+        )} */}
         {!account && (
           <section className="flex flex-col items-start py-8">
             <p className="mb-4">Please connect your wallet to create events.</p>

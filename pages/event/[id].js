@@ -82,7 +82,22 @@ function Event({ event }) {
   };
 
   if (!event) {
-    return "Loading...";
+    return (
+      <div className="lds-spinner ml-20">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    );
   }
 
   return (
