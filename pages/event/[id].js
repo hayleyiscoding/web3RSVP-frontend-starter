@@ -16,7 +16,7 @@ import {
   LinkIcon,
   CurrencyDollarIcon,
 } from "@heroicons/react/outline";
-import { Router } from "next/router";
+import { useRouter } from "next/router";
 
 function Event({ event }) {
   const { data: account } = useAccount();
@@ -24,6 +24,8 @@ function Event({ event }) {
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(null);
   const [currentTimestamp, setEventTimestamp] = useState(new Date().getTime());
+
+  const router = useRouter();
 
   function checkIfAlreadyRSVPed() {
     if (account) {
@@ -242,6 +244,8 @@ export async function getServerSideProps(context) {
           totalRSVPs
           totalConfirmedAttendees
           imageURL
+          isDisabled
+          eventCost
           rsvps {
             id
             attendee {
