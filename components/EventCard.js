@@ -19,7 +19,7 @@ export default function EventCard({
         {imageURL && <Image src={imageURL} alt="event image" layout="fill" />}
       </div>
       <p className="mt-2 block text-sm text-gray-500">
-        {formatTimestamp(eventTimestamp)} - {eventCost}
+        {formatTimestamp(eventTimestamp)}
       </p>
       <p className="block text-base font-medium text-gray-900">{name}</p>
     </div>
